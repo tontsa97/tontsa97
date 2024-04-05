@@ -22,3 +22,22 @@ I'm from Finland 🇫🇮 and born in 1997. I'm also fond of fishing as a hobby 
 
 ---
 
+### 📊 Stats
+
+![Tontsa's GitHub stats](https://github-readme-stats.vercel.app/api?username=tontsa97&show_icons=true&theme=gruvbox)
+
+#
+
+<details>
+ <summary><h3>👨‍💻 Tontsa's Coding Journey</h3></summary>
+   I started my coding journey from scratch, learning Lua programming through YouTube tutorials and Discord forums. Over the past 5 years, I've been immersed in Lua coding, honing my skills and expanding my knowledge.
+
+   Initially, I was a naive computer science enthusiast with a passion to delve into the programming world - mastering code, Unix, Linux, and theory. I simultaneously taught myself iOS development with a dream of creating my own app. However, this aspiration was soon overshadowed by my drive to excel in Java, ultimately leading to a full-stack software engineering job after graduation.
+
+   Throughout this journey, I harbored a concurrent ambition - YouTube content creation. This eventually led me to quit my software engineering job and pursue YouTube full-time, focusing on content creation ever since. However, a lingering dissatisfaction remained - abandoning my dream of app development for the security of a job.
+
+   Now, having embraced the discomfort of being a creator, I'm ready to revisit that dream of building my own app. I'm determined to take the leap again, to step out of my comfort zone and realize the aspiration of my younger self. To facilitate this, I'm restructuring my YouTube content to dedicate more time to fulfilling this dream, which I aim to tackle by 2023.
+
+   So don't wait up, because I'm on a mission.
+
+</details>
