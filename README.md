@@ -21,4 +21,4 @@ I'm from Finland 🇫🇮 and born in 1997. I'm also fond of fishing as a hobby 
    </p>
 
 ---
-![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCdvXWCdRQAQvDgZ6mZEKZKQ?label=Subscribers&style=social)
+
