@@ -34,16 +34,7 @@ I'm from Finland 🇫🇮 and born in 1997. I'm also fond of fishing as a hobby 
 ![Tontsa's GitHub stats](https://github-readme-stats.vercel.app/api?username=tontsa97&show_icons=true&theme=gruvbox)
 
 #
- <hr/>
- <div align="center">
-  <h2>🐍 My Contributions 🐍</h2>
-  <br>
-  <img alt="snake eating my contributions" src="https://raw.githubusercontent.com/mrbiku001/mrbiku001/output/github-contribution-grid-snake.svg" />
-  
-  <br/><br/><br/>
-</div>
 
-<hr/>
 <details>
  <summary><h3>👨‍💻 Tontsa's Coding Journey</h3></summary>
    I started my coding journey from scratch, learning Lua programming through YouTube tutorials and Discord forums. Over the past 5 years, I've been immersed in Lua coding, honing my skills and expanding my knowledge.
