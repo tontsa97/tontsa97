@@ -38,7 +38,7 @@ I'm from Finland 🇫🇮 and born in 1997. I'm also fond of fishing as a hobby 
  <div align="center">
   <h2>🐍 My Contributions 🐍</h2>
   <br>
-  <img alt="snake eating my contributions" src="https://raw.githubusercontent.com/mrbiku001/tontsa97/output/github-contribution-grid-snake.svg" />
+  <img alt="snake eating my contributions" src="https://raw.githubusercontent.com/mrbiku001/mrbiku001/output/github-contribution-grid-snake.svg" />
   
   <br/><br/><br/>
 </div>
