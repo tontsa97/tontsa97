@@ -9,6 +9,8 @@ I'm a FiveM learning developer interested in QBCore and QBox. I enjoy casual dev
 
 I'm from Finland 🇫🇮 and born in 1997. I'm also fond of fishing as a hobby.
 
+I study and practice coding by leveraging AI, using modern technology to my advantage.
+
    <p align="left">
       <a href="https://www.youtube.com/c/bonoboturbo?sub_confirmation=1">
          <img alt="youtube subscribers" title="Subscribe to my YouTube channel" src="https://custom-icon-badges.demolab.com/youtube/channel/subscribers/UCdvXWCdRQAQvDgZ6mZEKZKQ?color=%23E05D44&label=SUBSCRIBE&logo=video&logoColor=white&style=for-the-badge&labelColor=CE4630"/></a> 
@@ -37,7 +39,6 @@ I'm from Finland 🇫🇮 and born in 1997. I'm also fond of fishing as a hobby.
 
 <details>
  <summary><h3>👨‍💻 Tontsa's Coding Journey</h3></summary>
-   I started my coding journey from scratch, learning Lua programming through YouTube tutorials and Discord forums. Over the past 5 years, I've been immersed in Lua coding, honing my skills and expanding my knowledge.
+   I started my coding journey from scratch, learning Lua programming through YouTube tutorials and Discord forums. Over the past 5 years, I've been immersed in Lua coding, honing my skills and expanding my knowledge. I also use AI tools to aid in learning and development, making the most of modern technology.
    So don't wait up, because I'm on a mission.
-
 </details>
