@@ -32,9 +32,9 @@ I study and practice coding by leveraging AI, using modern technology to my adva
 
 ![Tontsa's GitHub stats](https://github-readme-stats.vercel.app/api?username=tontsa97&show_icons=true&theme=gruvbox)
 
-<p><img align="middle" src="https://github-readme-stats.vercel.app/api/top-langs?username=tontsa97&show_icons&theme=gruvbox=true&locale=en&layout=compact" alt="tontsa97" /></p>
-
 <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=tontsa97&theme=gruvbox" alt="tontsa97" /></p>
+
+<p><img align="middle" src="https://github-readme-stats.vercel.app/api/top-langs?username=tontsa97&show_icons=true&locale=en&layout=compact&theme=gruvbox" alt="tontsa97" /></p>
 
 #
 <h3 align="middle">Support:</h3>
