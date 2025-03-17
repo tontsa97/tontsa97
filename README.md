@@ -55,8 +55,10 @@ I study and practice coding by leveraging AI, using modern technology to my adva
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake.svg" />
   <img alt="github-snake" src="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake.svg" />
 </picture>
+
 ---
 ###
+
 <details>
  <summary><h3>👨‍💻 Tontsa's Coding Journey</h3></summary>
    I started my coding journey from scratch, learning Lua programming through YouTube tutorials and Discord forums. Over the past 5 years, I've been immersed in Lua coding, honing my skills and expanding my knowledge. I also use AI tools to aid in learning and development, making the most of modern technology.
