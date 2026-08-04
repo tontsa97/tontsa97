@@ -34,31 +34,6 @@ I study and practice coding by leveraging AI, using modern technology to my adva
 ---
 ###
 
-### 📊 Stats
-
-![Tontsa's GitHub stats](https://github-readme-stats.vercel.app/api?username=tontsa97&show_icons=true&theme=gruvbox)
-
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=tontsa97&theme=gruvbox" alt="tontsa97" /></p>
-
-<p><img align="middle" src="https://github-readme-stats.vercel.app/api/top-langs?username=tontsa97&show_icons=true&locale=en&layout=compact&theme=gruvbox" alt="tontsa97" /></p>
-
----
-###
-
-<h3 align="middle">Support:</h3>
-<p><a href="https://ko-fi.com/bonoboturbo"> <img align="middle" src="https://cdn.ko-fi.com/cdn/kofi3.png?v=3" height="50" width="210" alt="bonoboturbo" /></a></p><br><br>
-
----
-###
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake.svg" />
-  <img alt="github-snake" src="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake.svg" />
-</picture>
-
----
-###
-
 <details>
  <summary><h3>👨‍💻 Tontsa's Coding Journey</h3></summary>
    I started my coding journey from scratch, learning Lua programming through YouTube tutorials and Discord forums. Over the past 5 years, I've been immersed in Lua coding, honing my skills and expanding my knowledge. I also use AI tools to aid in learning and development, making the most of modern technology.
