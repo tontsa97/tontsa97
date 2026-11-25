@@ -13,7 +13,7 @@ from pathlib import Path
 
 SEED = 97
 CELL = 14
-COLS, ROWS = 60, 43
+COLS, ROWS = 60, 42
 W, H_GAME = COLS * CELL, ROWS * CELL
 H_TERM = 56
 H = H_GAME + H_TERM
@@ -28,19 +28,18 @@ FOOD_IN_TEXT = 0.4
 # (col0, row0, cols, rows, text); the middle row is the gate the snake can pass through
 L, R = 1, 31
 BLOCKS = [
-    (L, 2, 28, 3, "Hi there 👋", 17),
-    (R, 1, 28, 5, "I'm a FiveM learning developer interested in QBCore and QBox. I enjoy casual development in my free time."),
-    (L, 8, 28, 3, "🔭 I’m currently working on improving my skills in Lua programming for FiveM development."),
-    (R, 8, 28, 3, "🌱 I’m currently learning more about QBCore and QBox frameworks."),
-    (L, 14, 28, 3, "💬 Ask me about FiveM development or anything related to Lua programming!"),
-    (R, 13, 28, 5, "⚡ Fun fact: I'm passionate about gaming and enjoy exploring new game mechanics in my spare time."),
-    (L, 20, 28, 3, "I'm from Finland 🇫🇮 and born in 1997. I'm also fond of fishing as a hobby."),
-    (R, 20, 28, 3, "I study and practice coding by leveraging AI, using modern technology to my advantage."),
-    (L, 26, 28, 3, "🧰 Languages and Tools:", 16),
-    (R, 25, 28, 5, "I started my coding journey from scratch, learning Lua programming through YouTube tutorials and Discord forums."),
-    (L, 32, 28, 5, "Over the past 5 years, I've been immersed in Lua coding, honing my skills and expanding my knowledge."),
-    (R, 32, 28, 5, "I also use AI tools to aid in learning and development, making the most of modern technology."),
-    (L, 39, 28, 3, "So don't wait up, because I'm on a mission."),
+    (L, 1, 28, 5, "Hi there", 18),
+    (R, 1, 28, 5, "I'm a FiveM developer in the making, mostly into QBCore and QBox. I just like building things in my free time."),
+    (L, 8, 28, 5, "Right now I'm working on getting better at Lua for FiveM development."),
+    (R, 8, 28, 5, "I'm also digging deeper into the QBCore and QBox frameworks."),
+    (L, 15, 28, 5, "Got questions about FiveM or Lua? Ask me, I'm happy to talk about it."),
+    (R, 15, 28, 5, "Fun fact: I love gaming, and I'm always poking around to see how new game mechanics work."),
+    (L, 22, 28, 5, "I'm from Finland, born in 1997, and I like to go fishing when I'm away from the keyboard."),
+    (R, 22, 28, 5, "I learn and practice coding with the help of AI, because why not use modern tools to my advantage?"),
+    (L, 29, 28, 5, "Languages and Tools", 18),
+    (R, 29, 28, 5, "I started from scratch with YouTube tutorials and Discord forums. Five years of Lua later, I'm still at it."),
+    (L, 36, 28, 5, "I use AI tools to learn faster and make the most of modern tech."),
+    (R, 36, 28, 5, "So don't wait up, I'm on a mission."),
 ]
 
 PHRASES = [
@@ -292,15 +291,14 @@ def blocks_svg(th, frames, nodge):
         size = blk[5] if len(blk) > 5 else 13
         adv = ADV * size / 13
         x, y, w, h = c0 * CELL, r0 * CELL, cw * CELL, rh * CELL
-        out.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="6" fill="{th["block"]}" '
-                   f'stroke="{th["border"]}" stroke-dasharray="3 3"/>')
         lines = textwrap.wrap(text, 44 if size == 13 else 30)
+        fill = th['btxt'] if size == 13 else th['prompt']
         gy = gate_row(blk) * CELL + CELL / 2
         for k, ln in enumerate(lines):
             off = (k - (len(lines) - 1) / 2) * LH
             toks = graphemes(ln)
             ws = [2 if ord(t[0]) >= 0x2600 else 1 for t in toks]
-            left = x + w / 2 - sum(ws) * adv / 2
+            left = x + 6
             pos = 0
             for tk, wd in zip(toks, ws):
                 tx = left + (pos + wd / 2) * adv
@@ -329,7 +327,7 @@ def blocks_svg(th, frames, nodge):
                 tk = tk.replace("&", "&amp;").replace("<", "&lt;")
                 out.append(f'<text x="{fmt(tx)}" y="{fmt(gy + off)}" text-anchor="middle" dominant-baseline="central" '
                            f'font-family="{font}" font-size="{size}" font-weight="{600 if size == 13 else 700}" '
-                           f'fill="{th["btxt"]}">{tk}{anim}</text>')
+                           f'fill="{fill}">{tk}{anim}</text>')
     return "\n".join(out)
 
 def typing(th, rng):
@@ -393,7 +391,7 @@ def build(th, frames, nodge):
     rng = random.Random(SEED + 1)
     cells, dur = build_cells(frames, th)
     dots = "".join(f'<circle cx="{c * CELL + CELL / 2}" cy="{r * CELL + CELL / 2}" r="0.9" fill="{th["dot"]}"/>'
-                   for c in range(COLS) for r in range(ROWS) if (c, r) not in OBST)
+                   for c in range(COLS) for r in range(ROWS))
     svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="Itsestään pelaava snake ja koodaus-trashtalk">
 <style>.cur{{animation:b 1s steps(1) infinite}}@keyframes b{{50%{{opacity:0}}}}</style>
 <rect width="{W}" height="{H}" rx="10" fill="{th["bg"]}" stroke="{th["border"]}"/>
