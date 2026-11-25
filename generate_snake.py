@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Generates self-playing snake SVGs (light + dark) with typing trash talk.
 Pure SMIL/CSS animation: works inside <img>/<picture> on GitHub, no maintenance needed.
 Usage: python generate_snake.py [outdir]
@@ -11,7 +11,7 @@ from pathlib import Path
 
 SEED = 97
 CELL = 14
-COLS, ROWS = 60, 26
+COLS, ROWS = 60, 20
 W, H_GAME = COLS * CELL, ROWS * CELL
 H_TERM = 56
 H = H_GAME + H_TERM
@@ -21,19 +21,15 @@ GAMES = 3
 PAUSE = 14  # frozen steps after crash
 
 # obstacle text blocks (col0, row0, cols, rows, lines)
-def wrap(text, size=12, width=50):
+def wrap(text, size=14, width=44):
     return [(ln, size, 500) for ln in textwrap.wrap(text, width)]
 
 
 BLOCKS = [
-    (5, 2, 22, 3, [("tontsa97", 26, 700)]),
-    (33, 6, 22, 3, [("FiveM · Lua · QBox", 17, 600)]),
-    (8, 9, 17, 2, [("QBCore dev", 15, 600)]),
-    (36, 1, 18, 2, [("Suomi 🇫🇮 · 1997", 14, 600)]),
-    (2, 13, 26, 4, wrap("I started my coding journey from scratch, learning Lua programming through YouTube tutorials and Discord forums.")),
-    (32, 11, 26, 4, wrap("Over the past 5 years, I've been immersed in Lua coding, honing my skills and expanding my knowledge.")),
-    (4, 19, 26, 3, wrap("I also use AI tools to aid in learning and development, making the most of modern technology.")),
-    (36, 18, 22, 2, wrap("So don't wait up, because I'm on a mission.")),
+    (3, 2, 28, 5, wrap("I started my coding journey from scratch, learning Lua programming through YouTube tutorials and Discord forums.")),
+    (32, 2, 27, 5, wrap("Over the past 5 years, I've been immersed in Lua coding, honing my skills and expanding my knowledge.")),
+    (3, 10, 28, 5, wrap("I also use AI tools to aid in learning and development, making the most of modern technology.")),
+    (34, 11, 24, 2, wrap("So don't wait up, because I'm on a mission.")),
 ]
 
 PHRASES = [
@@ -112,7 +108,7 @@ def simulate(rng):
     frames = []
     for _ in range(GAMES):
         snake = deque([(1, 7), (0, 7)])  # head first
-        snake = deque([(3, 12), (2, 12), (1, 12)])
+        snake = deque([(3, 8), (2, 8), (1, 8)])
         target = rng.randint(*FOODS_PER_GAME)
         eaten = 0
 
@@ -274,7 +270,7 @@ def blocks_svg(th):
         x, y, w, h = c0 * CELL, r0 * CELL, cw * CELL, rh * CELL
         out.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="6" fill="{th["block"]}" '
                    f'stroke="{th["border"]}" stroke-dasharray="3 3"/>')
-        lh = 15 if len(lines) > 1 else 0
+        lh = 18 if len(lines) > 1 else 0
         for k, (txt, size, weight) in enumerate(lines):
             ty = y + h / 2 + (k - (len(lines) - 1) / 2) * lh
             out.append(f'<text x="{x + w / 2}" y="{ty}" text-anchor="middle" dominant-baseline="central" '
