@@ -13,7 +13,7 @@ from pathlib import Path
 
 SEED = 97
 CELL = 14
-COLS, ROWS = 60, 35
+COLS, ROWS = 60, 34
 W, H_GAME = COLS * CELL, ROWS * CELL
 H_TERM = 56
 H = H_GAME + H_TERM
@@ -28,16 +28,15 @@ FOOD_IN_TEXT = 0.4
 # (col0, row0, cols, rows, text); the middle row is the gate the snake can pass through
 L, R = 1, 31
 BLOCKS = [
-    (L, 1, 28, 5, "Hi there", 18),
-    (R, 1, 28, 5, "I'm a FiveM developer in the making, mostly into QBCore and QBox. I just like building things in my free time."),
-    (L, 8, 28, 5, "Right now I'm working on getting better at Lua for FiveM development."),
-    (R, 8, 28, 5, "I'm also digging deeper into the QBCore and QBox frameworks."),
-    (L, 15, 28, 5, "Got questions about FiveM or Lua? Ask me, I'm happy to talk about it."),
-    (R, 15, 28, 5, "Fun fact: I love gaming, and I'm always poking around to see how new game mechanics work."),
-    (L, 22, 28, 5, "I'm from Finland, born in 1997, and I like to go fishing when I'm away from the keyboard."),
-    (R, 22, 28, 5, "I learn and practice coding with the help of AI, because why not use modern tools to my advantage?"),
-    (L, 29, 28, 5, "I started from scratch with YouTube tutorials and Discord forums. Five years of Lua later, I'm still at it."),
-    (R, 29, 28, 5, "I use AI tools to learn faster and make the most of modern tech. So don't wait up, I'm on a mission."),
+    (15, 1, 30, 3, "Hi there", 24),
+    (L, 6, 28, 5, "I'm a FiveM developer in the making, mostly into QBCore and QBox. I just like building things in my free time."),
+    (R, 6, 28, 5, "Right now I'm working on getting better at Lua for FiveM development, and digging deeper into QBCore and QBox."),
+    (L, 13, 28, 5, "Got questions about FiveM or Lua? Ask me, I'm happy to talk about it."),
+    (R, 13, 28, 5, "Fun fact: I love gaming, and I'm always poking around to see how new game mechanics work."),
+    (L, 20, 28, 5, "I'm from Finland, born in 1997, and I like to go fishing when I'm away from the keyboard."),
+    (R, 20, 28, 5, "I learn and practice coding with the help of AI, because why not use modern tools to my advantage?"),
+    (L, 27, 28, 5, "I started from scratch with YouTube tutorials and Discord forums. Five years of Lua later, I'm still at it."),
+    (R, 27, 28, 5, "I use AI tools to learn faster and make the most of modern tech. So don't wait up, I'm on a mission."),
 ]
 
 PHRASES = [
@@ -127,7 +126,7 @@ def simulate(rng):
     kinds = ["wall", "letter", "letter"]
     rng.shuffle(kinds)
     for kind in kinds:
-        snake = deque([(3, 7), (2, 7), (1, 7)])
+        snake = deque([(3, 4), (2, 4), (1, 4)])
         target = rng.randint(*FOODS_PER_GAME)
         eaten = 0
         ndset = set()
@@ -296,7 +295,7 @@ def blocks_svg(th, frames, nodge):
             off = (k - (len(lines) - 1) / 2) * LH
             toks = graphemes(ln)
             ws = [2 if ord(t[0]) >= 0x2600 else 1 for t in toks]
-            left = x + 6
+            left = x + w / 2 - sum(ws) * adv / 2 if size > 20 else x + 6
             pos = 0
             for tk, wd in zip(toks, ws):
                 tx = left + (pos + wd / 2) * adv
