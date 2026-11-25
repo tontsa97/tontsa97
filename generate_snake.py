@@ -1,16 +1,17 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """Generates self-playing snake SVGs (light + dark) with typing trash talk.
 Pure SMIL/CSS animation: works inside <img>/<picture> on GitHub, no maintenance needed.
 Usage: python generate_snake.py [outdir]
 """
 import random
+import textwrap
 import sys
 from collections import deque
 from pathlib import Path
 
 SEED = 97
 CELL = 14
-COLS, ROWS = 60, 14
+COLS, ROWS = 60, 26
 W, H_GAME = COLS * CELL, ROWS * CELL
 H_TERM = 56
 H = H_GAME + H_TERM
@@ -20,11 +21,19 @@ GAMES = 3
 PAUSE = 14  # frozen steps after crash
 
 # obstacle text blocks (col0, row0, cols, rows, lines)
+def wrap(text, size=12, width=50):
+    return [(ln, size, 500) for ln in textwrap.wrap(text, width)]
+
+
 BLOCKS = [
     (5, 2, 22, 3, [("tontsa97", 26, 700)]),
     (33, 6, 22, 3, [("FiveM · Lua · QBox", 17, 600)]),
     (8, 9, 17, 2, [("QBCore dev", 15, 600)]),
     (36, 1, 18, 2, [("Suomi 🇫🇮 · 1997", 14, 600)]),
+    (2, 13, 26, 4, wrap("I started my coding journey from scratch, learning Lua programming through YouTube tutorials and Discord forums.")),
+    (32, 11, 26, 4, wrap("Over the past 5 years, I've been immersed in Lua coding, honing my skills and expanding my knowledge.")),
+    (4, 19, 26, 3, wrap("I also use AI tools to aid in learning and development, making the most of modern technology.")),
+    (36, 18, 22, 2, wrap("So don't wait up, because I'm on a mission.")),
 ]
 
 PHRASES = [
@@ -265,8 +274,10 @@ def blocks_svg(th):
         x, y, w, h = c0 * CELL, r0 * CELL, cw * CELL, rh * CELL
         out.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="6" fill="{th["block"]}" '
                    f'stroke="{th["border"]}" stroke-dasharray="3 3"/>')
-        for txt, size, weight in lines:
-            out.append(f'<text x="{x + w / 2}" y="{y + h / 2}" text-anchor="middle" dominant-baseline="central" '
+        lh = 15 if len(lines) > 1 else 0
+        for k, (txt, size, weight) in enumerate(lines):
+            ty = y + h / 2 + (k - (len(lines) - 1) / 2) * lh
+            out.append(f'<text x="{x + w / 2}" y="{ty}" text-anchor="middle" dominant-baseline="central" '
                        f'font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="{size}" '
                        f'font-weight="{weight}" fill="{th["btxt"]}">{txt}</text>')
     return "\n".join(out)
