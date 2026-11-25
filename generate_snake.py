@@ -13,7 +13,7 @@ from pathlib import Path
 
 SEED = 97
 CELL = 14
-COLS, ROWS = 60, 20
+COLS, ROWS = 60, 43
 W, H_GAME = COLS * CELL, ROWS * CELL
 H_TERM = 56
 H = H_GAME + H_TERM
@@ -26,11 +26,21 @@ NEAR = 3  # cells ahead/behind the snake where letters step aside
 FOOD_IN_TEXT = 0.4
 
 # (col0, row0, cols, rows, text); the middle row is the gate the snake can pass through
+L, R = 1, 31
 BLOCKS = [
-    (3, 2, 28, 5, "I started my coding journey from scratch, learning Lua programming through YouTube tutorials and Discord forums."),
-    (32, 2, 27, 5, "Over the past 5 years, I've been immersed in Lua coding, honing my skills and expanding my knowledge."),
-    (3, 10, 28, 5, "I also use AI tools to aid in learning and development, making the most of modern technology."),
-    (33, 11, 26, 3, "So don't wait up, because I'm on a mission."),
+    (L, 2, 28, 3, "Hi there 👋", 17),
+    (R, 1, 28, 5, "I'm a FiveM learning developer interested in QBCore and QBox. I enjoy casual development in my free time."),
+    (L, 8, 28, 3, "🔭 I’m currently working on improving my skills in Lua programming for FiveM development."),
+    (R, 8, 28, 3, "🌱 I’m currently learning more about QBCore and QBox frameworks."),
+    (L, 14, 28, 3, "💬 Ask me about FiveM development or anything related to Lua programming!"),
+    (R, 13, 28, 5, "⚡ Fun fact: I'm passionate about gaming and enjoy exploring new game mechanics in my spare time."),
+    (L, 20, 28, 3, "I'm from Finland 🇫🇮 and born in 1997. I'm also fond of fishing as a hobby."),
+    (R, 20, 28, 3, "I study and practice coding by leveraging AI, using modern technology to my advantage."),
+    (L, 26, 28, 3, "🧰 Languages and Tools:", 16),
+    (R, 25, 28, 5, "I started my coding journey from scratch, learning Lua programming through YouTube tutorials and Discord forums."),
+    (L, 32, 28, 5, "Over the past 5 years, I've been immersed in Lua coding, honing my skills and expanding my knowledge."),
+    (R, 32, 28, 5, "I also use AI tools to aid in learning and development, making the most of modern technology."),
+    (L, 39, 28, 3, "So don't wait up, because I'm on a mission."),
 ]
 
 PHRASES = [
@@ -120,7 +130,7 @@ def simulate(rng):
     kinds = ["wall", "letter", "letter"]
     rng.shuffle(kinds)
     for kind in kinds:
-        snake = deque([(3, 8), (2, 8), (1, 8)])
+        snake = deque([(3, 7), (2, 7), (1, 7)])
         target = rng.randint(*FOODS_PER_GAME)
         eaten = 0
         ndset = set()
@@ -251,10 +261,21 @@ def letter_keyframes(near):
     return sorted(pts.items())
 
 
+def graphemes(s):
+    out, i = [], 0
+    while i < len(s):
+        if 0x1F1E6 <= ord(s[i]) <= 0x1F1FF and i + 1 < len(s):
+            out.append(s[i:i + 2])
+            i += 2
+        else:
+            out.append(s[i])
+            i += 1
+    return out
+
+
 def blocks_svg(th, frames, nodge):
     total = len(frames)
     dur = fmt(total * STEP)
-    # snake columns on each gate row, per frame
     gate_cols = []
     for f in frames:
         per = {}
@@ -264,44 +285,52 @@ def blocks_svg(th, frames, nodge):
                 per.setdefault(bi, []).append(c)
         gate_cols.append(per)
     font = "ui-monospace,SFMono-Regular,Consolas,Menlo,monospace"
+    cache = {}
     out = []
-    for bi, (c0, r0, cw, rh, text) in enumerate(BLOCKS):
+    for bi, blk in enumerate(BLOCKS):
+        c0, r0, cw, rh, text = blk[:5]
+        size = blk[5] if len(blk) > 5 else 13
+        adv = ADV * size / 13
         x, y, w, h = c0 * CELL, r0 * CELL, cw * CELL, rh * CELL
         out.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="6" fill="{th["block"]}" '
                    f'stroke="{th["border"]}" stroke-dasharray="3 3"/>')
-        lines = textwrap.wrap(text, 44)
-        mid = len(lines) // 2
-        gy = gate_row(BLOCKS[bi]) * CELL + CELL / 2
+        lines = textwrap.wrap(text, 44 if size == 13 else 30)
+        gy = gate_row(blk) * CELL + CELL / 2
         for k, ln in enumerate(lines):
-            n = len(ln)
-            ty = gy + (k - mid) * LH
-            left = x + w / 2 - n * ADV / 2
-            for i, ch in enumerate(ln):
-                if ch == " ":
+            off = (k - (len(lines) - 1) / 2) * LH
+            toks = graphemes(ln)
+            ws = [2 if ord(t[0]) >= 0x2600 else 1 for t in toks]
+            left = x + w / 2 - sum(ws) * adv / 2
+            pos = 0
+            for tk, wd in zip(toks, ws):
+                tx = left + (pos + wd / 2) * adv
+                pos += wd
+                if tk == " ":
                     continue
-                tx = left + i * ADV + ADV / 2
                 anim = ""
-                if k == mid:
+                if abs(off) <= 9:
                     lc = int(tx // CELL)
-                    near = [0 if bi in nodge[t] else
-                            int(any(abs(c - lc) <= NEAR for c in gate_cols[t].get(bi, ())))
-                            for t in range(total)]
+                    if (bi, lc) not in cache:
+                        cache[(bi, lc)] = [0 if bi in nodge[t] else
+                                           int(any(abs(c - lc) <= NEAR for c in gate_cols[t].get(bi, ())))
+                                           for t in range(total)]
+                    near = cache[(bi, lc)]
                     if any(near):
                         kp = letter_keyframes(near)
                         kts = ";".join(fmt(t / total) for t, _ in kp)
-                        dy = -9 if (i + k) % 2 == 0 else 9
-                        dx = 3 if i % 2 == 0 else -3
+                        dy = -9 if pos % 2 == 0 else 9
+                        dx = 3 if pos % 3 == 0 else -3
                         tv = ";".join(f"{dx} {dy}" if s else "0 0" for _, s in kp)
                         ov = ";".join("0.15" if s else "1" for _, s in kp)
                         anim = (f'<animateTransform attributeName="transform" type="translate" dur="{dur}s" '
                                 f'repeatCount="indefinite" keyTimes="{kts}" values="{tv}"/>'
                                 f'<animate attributeName="opacity" dur="{dur}s" repeatCount="indefinite" '
                                 f'keyTimes="{kts}" values="{ov}"/>')
-                ch = ch.replace("&", "&amp;").replace("<", "&lt;")
-                out.append(f'<text x="{fmt(tx)}" y="{fmt(ty)}" text-anchor="middle" dominant-baseline="central" '
-                           f'font-family="{font}" font-size="13" font-weight="600" fill="{th["btxt"]}">{ch}{anim}</text>')
+                tk = tk.replace("&", "&amp;").replace("<", "&lt;")
+                out.append(f'<text x="{fmt(tx)}" y="{fmt(gy + off)}" text-anchor="middle" dominant-baseline="central" '
+                           f'font-family="{font}" font-size="{size}" font-weight="{600 if size == 13 else 700}" '
+                           f'fill="{th["btxt"]}">{tk}{anim}</text>')
     return "\n".join(out)
-
 
 def typing(th, rng):
     cw, fs = 8.4, 14
