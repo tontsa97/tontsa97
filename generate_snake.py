@@ -13,7 +13,7 @@ from pathlib import Path
 
 SEED = 97
 CELL = 14
-COLS, ROWS = 60, 42
+COLS, ROWS = 60, 35
 W, H_GAME = COLS * CELL, ROWS * CELL
 H_TERM = 56
 H = H_GAME + H_TERM
@@ -36,10 +36,8 @@ BLOCKS = [
     (R, 15, 28, 5, "Fun fact: I love gaming, and I'm always poking around to see how new game mechanics work."),
     (L, 22, 28, 5, "I'm from Finland, born in 1997, and I like to go fishing when I'm away from the keyboard."),
     (R, 22, 28, 5, "I learn and practice coding with the help of AI, because why not use modern tools to my advantage?"),
-    (L, 29, 28, 5, "Languages and Tools", 18),
-    (R, 29, 28, 5, "I started from scratch with YouTube tutorials and Discord forums. Five years of Lua later, I'm still at it."),
-    (L, 36, 28, 5, "I use AI tools to learn faster and make the most of modern tech."),
-    (R, 36, 28, 5, "So don't wait up, I'm on a mission."),
+    (L, 29, 28, 5, "I started from scratch with YouTube tutorials and Discord forums. Five years of Lua later, I'm still at it."),
+    (R, 29, 28, 5, "I use AI tools to learn faster and make the most of modern tech. So don't wait up, I'm on a mission."),
 ]
 
 PHRASES = [
