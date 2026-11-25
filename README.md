@@ -22,12 +22,3 @@ I study and practice coding by leveraging AI, using modern technology to my adva
   <a href="https://isocpp.org/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="C++" width="40" height="40"/></a>
   <a href="https://www.lua.org/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/lua/lua-original.svg" alt="Lua" width="40" height="40"/></a>
 </p>
-
----
-
-<details>
-  <summary><h3>👨‍💻 Tontsa's Coding Journey</h3></summary>
-
-I started my coding journey from scratch, learning Lua programming through YouTube tutorials and Discord forums. Over the past 5 years, I've been immersed in Lua coding, honing my skills and expanding my knowledge. I also use AI tools to aid in learning and development, making the most of modern technology. So don't wait up, because I'm on a mission.
-
-</details>
